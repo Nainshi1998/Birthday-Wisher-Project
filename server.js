@@ -1,6 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
 import moment from "moment";
+import fetch from 'node-fetch';
+
 
 const app = express();
 const PORT = 3000;
@@ -32,6 +34,13 @@ app.post("/wish", (req, res) => {
     res.render("birthday", {name, isBirthday});
     
 })
+
+setInterval(() => {
+    fetch('https://birthday-wisher-project.onrender.com')
+        .then(res => console.log('Pinged Render App!'))
+        .catch(err => console.error('Error Pinging:', err));
+}, 300000);
+
 
 // start server
 app.listen(PORT, () => {
